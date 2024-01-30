@@ -18,27 +18,27 @@ function tocar() {
     botaoPlay.classList.add(hashpause)
 }
 
-function pausar(){
+function pausar() {
     audioCap.pause()
     botaoPlay.classList.remove(hashpause)
     botaoPlay.classList.add(hashplay)
 }
 
-function tocandoOuPausado(){
-    if ( tocando == 0){
+function tocandoOuPausado() {
+    if (tocando == 0) {
         tocar();
-        tocando=1;
-        
-    }else{
+        tocando = 1;
+
+    } else {
         pausar();
-        tocando=0;
+        tocando = 0;
     }
 }
 
-function voltar(){
-    if(cap === 1){
+function voltar() {
+    if (cap === 1) {
         cap = 10
-    }else{
+    } else {
         cap = cap - 1
     }
     audioCap.src = "./dom-casmurro/" + cap + ".mp3"
@@ -47,24 +47,40 @@ function voltar(){
     nomeFaixa()
 }
 
-function proxCap(){
-    if(cap === numeroCapitulos){
+function proxCap() {
+    if (cap === numeroCapitulos) {
         cap = 1
     }
-    else{
-        cap = cap+1
+    else {
+        cap = cap + 1
     }
     audioCap.src = "./dom-casmurro/" + cap + ".mp3"
     tocar()
-    tocando=1
+    tocando = 1
     nomeFaixa()
 }
 
-function nomeFaixa(){
-    capitulo.innerText = 'Capítulo '+cap
+function nomeFaixa() {
+    capitulo.innerText = 'Capítulo ' + cap
 }
 
 botaoAvanc.addEventListener('click', proxCap)
 botaoBack.addEventListener('click', voltar)
 
 botaoPlay.addEventListener('click', tocandoOuPausado)
+
+
+
+
+const myObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show')
+        }else{
+            entry.target.classList.remove('show')
+        }
+    })
+})
+
+const elements = document.querySelectorAll('.hidden')
+elements.forEach((element) => myObserver.observe(element))

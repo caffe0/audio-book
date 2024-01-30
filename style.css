@@ -12,6 +12,9 @@ body{
     justify-content: center;
     align-items: center;
 }
+#container-aplicativo{
+    height: 100vh;
+}
 
 #container-imagem{
     margin-top: 5vh ;
@@ -55,4 +58,24 @@ body{
     cursor: pointer;
     transition: .1s;
     font-size: 55px;
+}
+
+
+section{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: 100vh;
+}
+.hidden{
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 2s;
+}
+.show{
+    filter: blur(0);
+    opacity: 1;
+    transition: all 2s;
 }
